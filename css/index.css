@@ -1,0 +1,99 @@
+h1, p, button, input, li {
+    font-family: 'Oswald', sans-serif;
+}
+
+h1 {
+    margin: 30px;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+html {
+    background-color: #511c29;
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+
+}
+
+body {
+    background-color: #333;
+    height: 100%;
+    margin: 5px;
+}
+
+#app {
+    color: white;
+    height: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.game {
+    background-color: #56494e;
+    border-radius: 5px;
+    box-shadow: 20px 15px 20px 2px black;
+    height: 400px;
+    margin: 0 auto 80px auto;
+    width: 550px;
+}
+
+.feedback-bar {
+    background-color: #db324d;
+    border-radius: 5px 5px 0 0;
+    font-size: 20px;
+    height: 60px;
+    padding: 4px 0 4px 0;
+    width: 100%;
+}
+
+.feedback {
+    margin-top: 20px;
+}
+
+.number-entry-form {
+    padding: 40px;
+    background-color: #a62639;
+}
+
+.guess-entry {
+    border-radius: 3px;
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 80%;
+}
+
+.guess-button {
+    border: none;
+    border-radius: 3px;
+    font-size: 24px;
+}
+
+.guess-button:hover {
+    background-color: orangered;
+}
+
+.guess-list-box {
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+}
+
+.guess-no {
+    padding-top: 20px;
+}
+
+.guess-item {
+    background-color: #0c3;
+    border-radius: 3px;
+    color: white;
+    float: left;
+    list-style-type: none;
+    margin: 3px;
+    padding: 6px;
+}
+
+.correct-item {
+    background-color: gold;
+    color: #222;
+}
