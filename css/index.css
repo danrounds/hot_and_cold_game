@@ -1,4 +1,4 @@
-h1, p, button, input, li {
+h1, p, button, input, li, a {
     font-family: 'Oswald', sans-serif;
 }
 
@@ -41,8 +41,8 @@ body {
 .feedback-bar {
     background-color: #db324d;
     border-radius: 5px 5px 0 0;
-    font-size: 20px;
     height: 60px;
+    font-size: 20px;
     padding: 4px 0 4px 0;
     width: 100%;
 }
@@ -68,10 +68,12 @@ body {
     border: none;
     border-radius: 3px;
     font-size: 24px;
+    padding: 4px;
 }
 
 .guess-button:hover {
-    background-color: orangered;
+    color: white;
+    text-shadow: 1px 0 black, -1px 0 black, 0 1px black, 0 -1px black;
 }
 
 .guess-list-box {
