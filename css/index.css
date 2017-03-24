@@ -18,6 +18,7 @@ html {
 
 body {
     background-color: #333;
+    border-radius: 3px;
     height: 100%;
     margin: 5px;
 }
@@ -26,6 +27,7 @@ body {
     color: white;
     height: 100%;
     margin: auto;
+    overflow: auto;
     text-align: center;
 }
 
@@ -36,6 +38,30 @@ body {
     height: 400px;
     margin: 0 auto 80px auto;
     width: 550px;
+}
+
+a {
+    color: white;
+    font-size: 24px;
+    text-decoration:  none;
+}
+
+a:visited {
+    color: white;
+}
+
+.top-bar {
+    margin-top: 0;
+}
+
+.what-is-link {
+    float: left;
+    margin-left: 25px;
+}
+
+.new-game-link {
+    float: right;
+    margin-right: 25px;
 }
 
 .feedback-bar {
@@ -67,13 +93,14 @@ body {
 .guess-button {
     border: none;
     border-radius: 3px;
+    color: #333;
     font-size: 24px;
     padding: 4px;
 }
 
 .guess-button:hover {
-    color: white;
-    text-shadow: 1px 0 black, -1px 0 black, 0 1px black, 0 -1px black;
+    background-color: #aaa;
+    color: black;
 }
 
 .guess-list-box {

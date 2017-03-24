@@ -1,10 +1,25 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import * as actions from '../actions/index';
 
-export default function TopBar() {
-    return (
-        <div>
-          <a href="#">What?</a>
-          <a href="#">+New Game</a>
-        </div>
-    );
+export class TopBar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.startNew = this.startNew.bind(this);
+    }
+
+    startNew(e) {
+        this.props.dispatch(actions.startNewGame());
+    }
+
+    render() {
+        return (
+            <div className="top-bar">
+              <a className="what-is-link" href="#">What?</a>
+              <a className="new-game-link" href="#" onClick={this.startNew}>+New Game</a>
+            </div>
+        );
+    }
 }
+
+export default connect()(TopBar);
