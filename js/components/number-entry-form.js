@@ -34,9 +34,9 @@ export class NumberEntry extends React.Component {
         return (
             <div className="number-entry-form">
               <input className="guess-entry" type="text" placeholder="enter your guess..."
-                     ref={element => {
-                         this.inputField = element;
-                }} onKeyPress={this.handleKeyPress} onBlur={this.getFocus}
+                     ref={element => { this.inputField = element; }}
+                onKeyPress={this.handleKeyPress}
+                onBlur={this.getFocus}
                 autoFocus required />
 <br />
 <button className="guess-button" type="button" onClick={this.onButtonClick}>
@@ -46,5 +46,6 @@ export class NumberEntry extends React.Component {
         );
     }
 }
+// Emacs's JSX-mode indentation is screwy
 
 export default connect()(NumberEntry);
