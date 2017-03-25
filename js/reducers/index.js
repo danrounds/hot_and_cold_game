@@ -16,16 +16,11 @@ export const reducer = (state=initialState, action) => {
         };
 
     case actions.MAKE_GUESS:
-        if (!(state.guesses.indexOf(action.guess) + 1)) {
-            return {
-                guesses: [...state.guesses, action.guess],
-                actual: state.actual,
-                difference: state.difference
-            };
-        } else {
-            alert(`You've already guessed ${action.guess}`);
-            return state;
-        }
+        return {
+            guesses: [...state.guesses, action.guess],
+            actual: state.actual,
+            difference: state.difference
+        };
 
     case actions.COMPARE_TO_ACTUAL:
         return {
