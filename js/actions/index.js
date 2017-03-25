@@ -23,3 +23,8 @@ export const compareToActual = (guess) => ({
     type: COMPARE_TO_ACTUAL,
     guess
 });
+
+export const INCREMENT_TURN = 'INCREMENT_TURN';
+export const incrementTurn = () => ({
+    type: INCREMENT_TURN
+});

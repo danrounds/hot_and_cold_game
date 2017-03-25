@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index';
+import store from '../store';
 
 export class NumberEntry extends React.Component {
     constructor(props) {
@@ -21,17 +22,22 @@ export class NumberEntry extends React.Component {
 
     onButtonClick() {
         const guess = Math.trunc(this.inputField.value.trim());
-        if (guess > 0 && guess < 101) {
-            if (this.props.guesses.indexOf(guess) + 1) {
-                alert(`You've already guessed ${guess}`);
+        if (!this.props.gameOver) {
+            if (guess > 0 && guess < 101) {
+                if (this.props.guesses.indexOf(guess) + 1) {
+                    alert(`You've already guessed ${guess}`);
+                } else {
+                    this.props.dispatch(actions.makeGuess(guess));
+                    this.props.dispatch(actions.compareToActual(guess));
+                    this.props.dispatch(actions.incrementTurn());
+                }
             } else {
-                this.props.dispatch(actions.makeGuess(guess));
-                this.props.dispatch(actions.compareToActual(guess));
-                this.inputField.value = '';
+                alert('Enter a (natural) number between 0 and 100');
             }
-        } else {
-            alert('Enter a (natural) number between 0 and 100');
-        }
+        } else
+            this.props.dispatch(actions.incrementTurn());
+        this.inputField.value = '';
+        console.log(store.getState());
     }
 
     render() {
@@ -53,7 +59,8 @@ export class NumberEntry extends React.Component {
 // Emacs's JSX-mode indentation is screwy
 
 const mapStateToProps = (state, props) => ({
-    guesses: state.guesses
+    guesses: state.guesses,
+    gameOver: state.gameOver
 });
 
 
