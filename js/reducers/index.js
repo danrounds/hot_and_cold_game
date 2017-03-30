@@ -14,7 +14,6 @@ const initialState = {
 export const reducer = (state=initialState, action) => {
     switch(action.type) {
     case actions.START_NEW_GAME:
-        console.log('START_NEW_GAME');
         return {
             guesses: [],
             actual: Math.ceil(Math.random() * 100),
@@ -35,7 +34,6 @@ export const reducer = (state=initialState, action) => {
     //     };
 
     case actions.MAKE_GUESS:
-        console.log('MAKE_GUESS');
         return {
             guesses: [...state.guesses, action.guess],
             actual: state.actual,
@@ -46,7 +44,6 @@ export const reducer = (state=initialState, action) => {
         };
 
     case actions.COMPARE_TO_ACTUAL:
-        console.log('COMPARE_TO_ACTUAL');
         return {
             guesses: state.guesses,
             actual: state.actual,
@@ -57,7 +54,6 @@ export const reducer = (state=initialState, action) => {
         };
 
     case actions.INCREMENT_TURN:
-        console.log('INCREMENT_TURN');
         return {
             guesses: state.guesses,
             actual: state.actual,
@@ -68,7 +64,6 @@ export const reducer = (state=initialState, action) => {
         };
 
     case actions.GET_HIGH_SCORE_SUCCESS:
-        console.log('GET_HIGH_SCORE_SUCCESS');
         return {
             guesses: state.guesses,
             actual: state.actual,
@@ -79,7 +74,6 @@ export const reducer = (state=initialState, action) => {
         };
 
     case actions.PUT_HIGH_SCORE_SYNC:
-        console.log('PUT_HIGH_SCORE_SYNC');
         return {
             guesses: state.guesses,
             actual: state.actual,
@@ -90,9 +84,7 @@ export const reducer = (state=initialState, action) => {
         };
 
     default:
-        console.log('DEFAULT');
         return Object.assign({}, state);               // fallthrough
-        // return state;               // fallthrough
     }
 
 };

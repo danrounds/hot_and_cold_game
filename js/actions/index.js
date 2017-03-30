@@ -58,6 +58,7 @@ export const getHighScore = score => dispatch => {
 
 export const putHighScore = score => dispatch => {
     const url = 'http://localhost:8081/fewest-guesses';
+    console.log(score);
     const params = {
         method: 'PUT',
         headers: {
@@ -65,6 +66,8 @@ export const putHighScore = score => dispatch => {
         },
         body: JSON.stringify({highScore: score})
     };
+
+    console.log(params.body);
 
     return fetch(url, params).then(response => {
         if (!response.ok) {
@@ -74,7 +77,6 @@ export const putHighScore = score => dispatch => {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data.highScore);
             dispatch(putHighScoreSync(data.highScore));
         })
         .catch(error =>

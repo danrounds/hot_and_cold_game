@@ -11,14 +11,6 @@ export class NumberEntry extends React.Component {
         this.getFocus = this.getFocus.bind(this);
     }
 
-    componentWillReceiveProps() {
-        console.log(`this.props.gameOver :  ${this.props.gameOver}`);
-        console.log(`this.props.turnN    :  ${this.props.turnN}`);
-        if (this.props.gameOver && this.props.gameOver === this.props.turnN) {
-            alert();
-        }
-    }
-
     getFocus() {
         this.inputField.focus();
     }
@@ -36,7 +28,6 @@ export class NumberEntry extends React.Component {
                     alert(`You've already guessed ${guess}`);
                 } else {
                     this.props.dispatch(actions.makeGuess(guess));
-                    // this.props.dispatch(actions.incrementTurn());
                     this.props.dispatch(actions.compareToActual(guess));
                 }
             } else {
@@ -45,17 +36,8 @@ export class NumberEntry extends React.Component {
         } else {
             this.props.dispatch(actions.incrementTurn());
         }
-
         this.inputField.value = '';
         console.log(store.getState());
-
-        // console.log(`this.props.gameOver :  ${this.props.gameOver}`);
-        // console.log(`this.props.turnN    :  ${this.props.turnN}`);
-
-        // if (this.props.gameOver && this.props.gameOver === this.props.turnN) {
-        //     alert();
-        // }
-
     }
 
     render() {
@@ -76,22 +58,10 @@ export class NumberEntry extends React.Component {
 }
 // Emacs's JSX-mode indentation is screwy
 
-// const mapStateToProps = (state, props) => ({
-//     guesses: state.guesses,
-//     gameOver: state.gameOver,
-//     turnN: state.turnN
-// });
-
-function mapStateToProps(state) {
-    console.log('OK');
-    console.log(`state.turnN ${state.turnN}`);
-    console.log(`state.gameOver ${state.gameOver}`);
-    return {
-        guesses: [...state.guesses],
-        gameOver: state.gameOver,
-        turnN: state.turnN
-    };
-}
-
+const mapStateToProps = (state, props) => ({
+    guesses: state.guesses,
+    gameOver: state.gameOver,
+    turnN: state.turnN
+});
 
 export default connect(mapStateToProps)(NumberEntry);
