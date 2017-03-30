@@ -12,8 +12,7 @@ export class HighScore extends React.Component {
         // mapStateToProps isn't up to date
         const state = store.getState();
         if (state.gameOver && state.gameOver === state.turnN) {
-            alert('pleeeeeeeeeease');
-            this.props.dispatch(actions.putHighScore(this.props.turnN));
+            this.props.dispatch(actions.putHighScore(this.props.turnN + 1));
         }
     }
 
