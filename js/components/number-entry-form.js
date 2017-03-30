@@ -29,13 +29,13 @@ export class NumberEntry extends React.Component {
                 } else {
                     this.props.dispatch(actions.makeGuess(guess));
                     this.props.dispatch(actions.compareToActual(guess));
-                    this.props.dispatch(actions.incrementTurn());
                 }
             } else {
                 alert('Enter a (natural) number between 0 and 100');
             }
-        } else
+        } else {
             this.props.dispatch(actions.incrementTurn());
+        }
         this.inputField.value = '';
         console.log(store.getState());
     }
@@ -60,8 +60,8 @@ export class NumberEntry extends React.Component {
 
 const mapStateToProps = (state, props) => ({
     guesses: state.guesses,
-    gameOver: state.gameOver
+    gameOver: state.gameOver,
+    turnN: state.turnN
 });
-
 
 export default connect(mapStateToProps)(NumberEntry);

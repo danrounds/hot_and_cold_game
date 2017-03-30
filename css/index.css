@@ -36,7 +36,7 @@ body {
     border-radius: 5px;
     box-shadow: 20px 15px 20px 2px black;
     height: 400px;
-    margin: 0 auto 80px auto;
+    margin: 0 auto 60px auto;
     width: 550px;
 }
 
@@ -125,4 +125,9 @@ a:visited {
 .correct-item {
     background-color: gold;
     color: #222;
+}
+
+.best-score {
+    color: #fc3;
+    height: 60px;
 }
