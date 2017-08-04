@@ -23,16 +23,6 @@ export const reducer = (state=initialState, action) => {
             highScore: state.highScore
         };
 
-    // case actions.MAKE_GUESS:
-    //     return {
-    //         guesses: [...state.guesses, action.guess],
-    //         actual: state.actual,
-    //         difference: state.difference,
-    //         gameOver: state.gameOver,
-    //         turnN: state.turnN,
-    //         highScore: state.highScore
-    //     };
-
     case actions.MAKE_GUESS:
         return {
             guesses: [...state.guesses, action.guess],
@@ -45,7 +35,7 @@ export const reducer = (state=initialState, action) => {
 
     case actions.COMPARE_TO_ACTUAL:
         return {
-            guesses: state.guesses,
+            guesses: [...state.guesses],
             actual: state.actual,
             difference: action.guess - state.actual,
             gameOver: !(action.guess - state.actual) ? state.turnN : 0,
@@ -55,7 +45,7 @@ export const reducer = (state=initialState, action) => {
 
     case actions.INCREMENT_TURN:
         return {
-            guesses: state.guesses,
+            guesses: [...state.guesses],
             actual: state.actual,
             difference: state.difference,
             gameOver: state.gameOver,
@@ -65,7 +55,7 @@ export const reducer = (state=initialState, action) => {
 
     case actions.GET_HIGH_SCORE_SUCCESS:
         return {
-            guesses: state.guesses,
+            guesses: [...state.guesses],
             actual: state.actual,
             difference: state.difference,
             gameOver: state.gameOver,
@@ -75,7 +65,7 @@ export const reducer = (state=initialState, action) => {
 
     case actions.PUT_HIGH_SCORE_SYNC:
         return {
-            guesses: state.guesses,
+            guesses: [...state.guesses],
             actual: state.actual,
             difference: state.difference,
             gameOver: state.gameOver,
