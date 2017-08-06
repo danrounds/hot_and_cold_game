@@ -5,19 +5,16 @@ import store from '../store';
 
 export class HighScore extends React.Component {
     componentWillReceiveProps() {
-        // if (this.props.gameOver && this.props.gameOver === this.props.turnN) {
-        //     alert('pleeeeeeeeeease');
-        // }
-        // I don't like that I'm "directly" accessing state, here, but
-        // mapStateToProps isn't up to date
-        const state = store.getState();
-        if (state.gameOver && state.gameOver === state.turnN) {
-            this.props.dispatch(actions.putHighScore(this.props.turnN + 1));
-        }
+        if (this.props.gameOver && this.props.gameOver === this.props.turnN)
+            this.props.dispatch(actions.putHighScore(this.props.turnN));
     }
 
     componentDidMount() {
         this.props.dispatch(actions.getHighScore());
+    }
+
+    componentDidUpdate() {
+        this.render();
     }
 
     render() {

@@ -19,7 +19,7 @@ export const reducer = (state=initialState, action) => {
             actual: Math.ceil(Math.random() * 100),
             difference: 100,
             gameOver: 0,
-            turnN: state.turnN,
+            turnN: 0,
             highScore: state.highScore
         };
 
