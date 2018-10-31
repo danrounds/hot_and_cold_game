@@ -16,8 +16,13 @@ export class NumberEntry extends React.Component {
     }
 
     handleKeyPress(e) {
-        if (e.key === 'Enter')
+        console.log(e.key);
+        if (e.key === 'Enter') {
             this.onButtonClick();
+        } else if (e.key === 'n') {
+            e.preventDefault();
+            this.props.dispatch(actions.startNewGame());
+        }       
     }
 
     onButtonClick() {
@@ -28,7 +33,7 @@ export class NumberEntry extends React.Component {
         } else {
             this.props.dispatch(actions.makeBadGuess(guess));
         }
-        this.inputField.value = '';
+        this.inputField.value = '';       
         console.log(store.getState());
     }
 

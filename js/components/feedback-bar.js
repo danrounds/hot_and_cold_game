@@ -47,7 +47,7 @@ export class FeedbackBar extends React.Component {
                                   'You are the champions'];
             text = possibilities[Math.floor(Math.random() * possibilities.length)];
         } else {
-            text = 'Click "New Game" to start again';
+            text = 'Click "New Game" or press your \'n\' key to start again';
         }
         this.setState({ text });
     }
