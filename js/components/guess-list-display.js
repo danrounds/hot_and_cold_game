@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 export class GuessListDisplay extends React.Component {
     render() {
@@ -9,7 +9,7 @@ export class GuessListDisplay extends React.Component {
     }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
     const wrongItem = 'guess-item';
     const rightItem = 'guess-item correct-item';
     const guesses = [];
@@ -17,14 +17,12 @@ const mapStateToProps = (state, props) => {
     for (let i in state.guesses) {
         guesses.push(
             <li key={state.guesses[i].toString()}
-                className={state.guesses[i] == state.actual ? rightItem : wrongItem }>
+                className={ state.guesses[i] == state.actual ? rightItem : wrongItem }>
               {state.guesses[i]}
             </li>
         );
     }
-    return {
-        guesses
-    };
+    return { guesses };
 };
 
 export default connect(mapStateToProps)(GuessListDisplay);

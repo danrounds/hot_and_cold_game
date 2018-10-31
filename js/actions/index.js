@@ -1,8 +1,4 @@
 // Actions for Hot & Cold
-// * Start New Game (restart)
-// * Make Guess
-// * Compare guess to actual (random) value
-// * Increment turn number
 import 'isomorphic-fetch';
 
 export const START_NEW_GAME = 'START_NEW_GAME';

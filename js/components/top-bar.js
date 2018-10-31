@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 
 export class TopBar extends React.Component {
@@ -8,7 +8,7 @@ export class TopBar extends React.Component {
         this.startNew = this.startNew.bind(this);
     }
 
-    startNew(e) {
+    startNew() {
         this.props.dispatch(actions.startNewGame());
     }
 
@@ -16,7 +16,7 @@ export class TopBar extends React.Component {
         return (
             <div className="top-bar">
               <a className="what-is-link" href="#">What?</a>
-              <a className="new-game-link" href="#" onClick={this.startNew}>+New Game</a>
+              <a className="new-game-link" href="#" onClick={ this.startNew }>+New Game</a>
             </div>
         );
     }
