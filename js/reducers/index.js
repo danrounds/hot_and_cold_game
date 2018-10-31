@@ -1,6 +1,7 @@
 import * as actions from '../actions/index';
 
 const initialState = {
+    currentGuess: null,
     guesses: [],
     actual: Math.ceil(Math.random() * 100),
     difference: 100,
@@ -15,6 +16,7 @@ export const reducer = (state=initialState, action) => {
     switch(action.type) {
     case actions.START_NEW_GAME:
         return {
+            currentGuess: null,
             guesses: [],
             actual: Math.ceil(Math.random() * 100),
             difference: 100,
@@ -26,6 +28,7 @@ export const reducer = (state=initialState, action) => {
 
     case actions.MAKE_GUESS:
         return {
+            currentGuess: action.guess,
             guesses: [...state.guesses, action.guess],
             actual: state.actual,
             difference: Math.abs(action.guess - state.actual),
@@ -35,8 +38,9 @@ export const reducer = (state=initialState, action) => {
             highScore: state.highScore,
         };
 
-    case actions.INCREMENT_N_INPUTS:
+    case actions.MAKE_BAD_GUESS:
         return {
+            currentGuess: action.badGuess,
             guesses: [...state.guesses],
             actual: state.actual,
             difference: state.difference,
@@ -48,6 +52,7 @@ export const reducer = (state=initialState, action) => {
 
     case actions.GET_HIGH_SCORE_SUCCESS:
         return {
+            currentGuess: state.currentGuess,
             guesses: [...state.guesses],
             actual: state.actual,
             difference: state.difference,
@@ -59,6 +64,7 @@ export const reducer = (state=initialState, action) => {
 
     case actions.PUT_HIGH_SCORE_SYNC:
         return {
+            currentGuess: state.currentGuess,
             guesses: [...state.guesses],
             actual: state.actual,
             difference: state.difference,

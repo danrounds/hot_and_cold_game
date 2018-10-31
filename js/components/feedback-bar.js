@@ -11,7 +11,13 @@ export class FeedbackBar extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (!nextProps.gameOver) {
-            this.gameFeedback(Math.abs(nextProps.difference));
+            const guess = nextProps.guess;
+            if (!/[0-9]+/i.test(guess) || guess < 1 || guess > 100)
+                this.setState({ text: `Guess an integer between 1 and 100`});
+            else if (this.props.guesses.includes(guess))
+                this.setState({ text: `You've already guessed ${guess}`})
+            else
+                this.gameFeedback(Math.abs(nextProps.difference));
         } else {
             this.setState({ inputsPastEnd: ++this.state.inputsPastEnd });
             this.postGameFeedback();
@@ -57,6 +63,8 @@ export class FeedbackBar extends React.Component {
 
 const mapStateToProps = (state) => ({
     difference: state.difference,
+    guess: state.currentGuess,
+    guesses: state.guesses,
     nInputs: state.nInputsSubmitted,
     gameOver: state.gameOver,
 });

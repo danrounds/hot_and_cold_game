@@ -22,19 +22,11 @@ export class NumberEntry extends React.Component {
 
     onButtonClick() {
         const guess = Math.trunc(this.inputField.value.trim());
-        if (!this.props.gameOver) {
-            if (guess > 0 && guess < 101) {
-                if (this.props.guesses.indexOf(guess) + 1) {
-                    this.props.dispatch(actions.incrementNInputs());
-                    alert(`You've already guessed ${guess}`);
-                } else {
-                    this.props.dispatch(actions.makeGuess(guess));
-                }
-            } else {
-                alert('Enter a (natural) number between 0 and 100');
-            }
+        if (!this.props.gameOver && !this.props.guesses.includes(guess)
+            && guess > 0 && guess < 101) {
+            this.props.dispatch(actions.makeGuess(guess));
         } else {
-            this.props.dispatch(actions.incrementNInputs());
+            this.props.dispatch(actions.makeBadGuess(guess));
         }
         this.inputField.value = '';
         console.log(store.getState());

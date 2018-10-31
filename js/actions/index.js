@@ -16,9 +16,10 @@ export const makeGuess = (guess) => ({
     guess,
 });
 
-export const INCREMENT_N_INPUTS = 'INCREMENT_N_INPUTS';
-export const incrementNInputs = () => ({
-    type: INCREMENT_N_INPUTS,
+export const MAKE_BAD_GUESS = 'MAKE_BAD_GUESS';
+export const makeBadGuess = (badGuess) => ({
+    type: MAKE_BAD_GUESS,
+    badGuess,
 });
 
 export const GET_HIGH_SCORE_SUCCESS = 'GET_HIGH_SCORE_SUCCESS';
