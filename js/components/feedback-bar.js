@@ -1,58 +1,64 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 export class FeedbackBar extends React.Component {
     constructor(props) {
         super(props);
-        this.text = 'Make a Guess';
+        this.gameFeedback = this.gameFeedback.bind(this);
+        this.postGameFeedback = this.postGameFeedback.bind(this);
+        this.state = { text: 'Make a Guess' };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!nextProps.gameOver) {
+            this.gameFeedback(Math.abs(nextProps.difference));
+        } else {
+            this.postGameFeedback(nextProps.turnN - nextProps.gameOver);
+        }
+    }
+
+    gameFeedback(difference) {
+        let text;
+        if (difference == 100) { text = 'Guess a number between 1 and 100'; }
+        else if (difference > 40)   { text = 'Cold.'; }
+        else if (difference > 30)   { text =  'Like an early-spring breeze...'; }
+        else if (difference > 20)   { text = 'Lukewarm...'; }
+        else if (difference > 15)   { text = 'Warm!'; }
+        else if (difference > 8)    { text = 'Hot!'; }
+        else if (difference > 1)    { text = 'Scorching!'; }
+        else if (difference > 0)    { text = 'You\'re so close!'; }
+        this.setState({ text });
+    }
+
+    postGameFeedback(turnsPastEnd) {
+        let text;
+        if (turnsPastEnd < 2) {
+            text = 'You got it!'
+        } else if (turnsPastEnd < 12) {
+            const possibilities =['Yup, you won', 'Game\'s still over','Congrats.','You are the winner',
+                                  'Thanks for playing; game over','Yes...you guessed the right number',
+                                  'You are the champions'];
+            text = possibilities[Math.floor(Math.random() * possibilities.length)];
+        } else {
+            text = 'Click "New Game" to start again';
+        }
+        this.setState({ text });
     }
 
     render() {
         return (
             <div className="feedback-bar">
-              <p className="feedback">{this.props.text}</p>
+              <p className="feedback">{ this.state.text }</p>
             </div>
         );
     }
 }
 
-const mapStateToDisplay = (state, props) => {
-    let text;
+const mapStateToProps = (state) => ({
+    difference: state.difference,
+    guesses: state.turnN,
+    gameOver: state.gameOver,
+});
 
-    if (!state.gameOver) {
-        text = gameFeedback(Math.abs(state.difference));
-    } else {
-        text = postGameFeedback(state.turnN - state.gameOver);
-    }
-    return { text };
-};
 
-const gameFeedback = (difference) => {
-    if (difference == 100) { return 'Guess a number between 1 and 100'; } else
-    if (difference > 40)   { return 'Cold.'; } else
-    if (difference > 30)   { return 'Like an early-spring breeze...'; } else
-    if (difference > 20)   { return 'Lukewarm...'; } else
-    if (difference > 15)   { return 'Warm!'; } else
-    if (difference > 8)    { return 'Hot!'; } else
-    if (difference > 1)    { return 'Scorching!'; } else
-    if (difference > 0)    { return 'You\'re so close!'; }
-};
-
-const postGameFeedback = (turnsPastEnd) => {
-    if (turnsPastEnd < 3) {
-        return 'You got it!'; }
-
-    else if (turnsPastEnd < 12) {
-        const possibilities = [
-            'Yup, you won', 'Game\'s still over', 'Congrats.',
-            'You are the winner', 'Thanks for playing; game over',
-            'Yes...you guessed the right number', 'You are the champions'
-        ];
-        return possibilities[Math.floor(Math.random() * possibilities.length)];
-
-    } else {
-        return 'Click "New Game" to start again';
-    }
-}
-
-export default connect(mapStateToDisplay)(FeedbackBar);
+export default connect(mapStateToProps)(FeedbackBar);
