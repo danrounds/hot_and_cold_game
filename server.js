@@ -2,7 +2,7 @@
 // For now, it needs to be run in a separate node instance.
 
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
 const jsonParser = require('body-parser').json();
 
 const app = express();
