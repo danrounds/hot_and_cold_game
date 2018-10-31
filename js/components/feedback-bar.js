@@ -6,7 +6,7 @@ export class FeedbackBar extends React.Component {
         super(props);
         this.gameFeedback = this.gameFeedback.bind(this);
         this.postGameFeedback = this.postGameFeedback.bind(this);
-        this.state = { text: 'Make a Guess', inputsPastEnd: -1 };
+        this.state = { text: 'Guess a number between 1 and 100', inputsPastEnd: -1 };
     }
 
     componentWillReceiveProps(nextProps) {
