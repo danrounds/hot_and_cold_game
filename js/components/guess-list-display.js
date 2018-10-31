@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 export class GuessListDisplay extends React.Component {
     render() {
         return (
-            <ul className="guess-list-box">{this.props.guesses}</ul>
+            <ul className="guess-list-box">{ this.props.guesses }</ul>
         );
     }
 }
