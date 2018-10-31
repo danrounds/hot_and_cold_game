@@ -16,7 +16,6 @@ export class NumberEntry extends React.Component {
     }
 
     handleKeyPress(e) {
-        console.log(e.key);
         if (e.key === 'Enter') {
             this.onButtonClick();
         } else if (e.key === 'n') {
