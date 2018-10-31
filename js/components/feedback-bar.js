@@ -6,14 +6,15 @@ export class FeedbackBar extends React.Component {
         super(props);
         this.gameFeedback = this.gameFeedback.bind(this);
         this.postGameFeedback = this.postGameFeedback.bind(this);
-        this.state = { text: 'Make a Guess' };
+        this.state = { text: 'Make a Guess', inputsPastEnd: -1 };
     }
 
     componentWillReceiveProps(nextProps) {
         if (!nextProps.gameOver) {
             this.gameFeedback(Math.abs(nextProps.difference));
         } else {
-            this.postGameFeedback(nextProps.turnN - nextProps.gameOver);
+            this.setState({ inputsPastEnd: ++this.state.inputsPastEnd });
+            this.postGameFeedback();
         }
     }
 
@@ -30,11 +31,11 @@ export class FeedbackBar extends React.Component {
         this.setState({ text });
     }
 
-    postGameFeedback(turnsPastEnd) {
+    postGameFeedback(turns=this.state.inputsPastEnd) {
         let text;
-        if (turnsPastEnd < 2) {
+        if (turns < 2) {
             text = 'You got it!'
-        } else if (turnsPastEnd < 12) {
+        } else if (turns < 12) {
             const possibilities =['Yup, you won', 'Game\'s still over','Congrats.','You are the winner',
                                   'Thanks for playing; game over','Yes...you guessed the right number',
                                   'You are the champions'];
@@ -56,7 +57,7 @@ export class FeedbackBar extends React.Component {
 
 const mapStateToProps = (state) => ({
     difference: state.difference,
-    guesses: state.turnN,
+    nInputs: state.nInputsSubmitted,
     gameOver: state.gameOver,
 });
 

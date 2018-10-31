@@ -25,16 +25,16 @@ export class NumberEntry extends React.Component {
         if (!this.props.gameOver) {
             if (guess > 0 && guess < 101) {
                 if (this.props.guesses.indexOf(guess) + 1) {
+                    this.props.dispatch(actions.incrementNInputs());
                     alert(`You've already guessed ${guess}`);
                 } else {
                     this.props.dispatch(actions.makeGuess(guess));
-                    this.props.dispatch(actions.compareToActual(guess));
                 }
             } else {
                 alert('Enter a (natural) number between 0 and 100');
             }
         } else {
-            this.props.dispatch(actions.incrementTurn());
+            this.props.dispatch(actions.incrementNInputs());
         }
         this.inputField.value = '';
         console.log(store.getState());
@@ -43,25 +43,23 @@ export class NumberEntry extends React.Component {
     render() {
         return (
             <div className="number-entry-form">
-              <input className="guess-entry" type="text" placeholder="enter your guess..."
-                     ref={element => { this.inputField = element; }}
-                onKeyPress={this.handleKeyPress}
-                onBlur={this.getFocus}
-                autoFocus required />
-<br />
-<button className="guess-button" type="button" onClick={this.onButtonClick}>
-  Guess!
-</button>
-</div>
+              <input className="guess-entry" type="text" placeholder={ !this.props.gameOver ? 'enter your guess...' : 'you won!' }
+                     ref={ element => { this.inputField = element; }}
+                     onKeyPress={ this.handleKeyPress }
+                     onBlur={ this.getFocus }
+                     autoFocus required />
+              <br />
+              <button className="guess-button" type="button" onClick={ this.onButtonClick }>
+                Guess!
+              </button>
+            </div>
         );
     }
 }
-// Emacs's JSX-mode indentation is screwy
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = (state) => ({
     guesses: state.guesses,
     gameOver: state.gameOver,
-    turnN: state.turnN
 });
 
 export default connect(mapStateToProps)(NumberEntry);

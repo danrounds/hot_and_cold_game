@@ -13,33 +13,27 @@ export const startNewGame = () => ({
 export const MAKE_GUESS = 'MAKE_GUESS';
 export const makeGuess = (guess) => ({
     type: MAKE_GUESS,
-    guess
+    guess,
 });
 
-export const COMPARE_TO_ACTUAL = 'COMPARE_TO_ACTUAL';
-export const compareToActual = (guess) => ({
-    type: COMPARE_TO_ACTUAL,
-    guess
-});
-
-export const INCREMENT_TURN = 'INCREMENT_TURN';
-export const incrementTurn = () => ({
-    type: INCREMENT_TURN
+export const INCREMENT_N_INPUTS = 'INCREMENT_N_INPUTS';
+export const incrementNInputs = () => ({
+    type: INCREMENT_N_INPUTS,
 });
 
 export const GET_HIGH_SCORE_SUCCESS = 'GET_HIGH_SCORE_SUCCESS';
 export const getHighScoreSuccess = (highScore) => ({
     type: GET_HIGH_SCORE_SUCCESS,
-    highScore
+    highScore,
 });
 
 export const PUT_HIGH_SCORE_SYNC = 'PUT_HIGH_SCORE_SYNC';
 export const putHighScoreSync = (highScore) => ({
     type: PUT_HIGH_SCORE_SYNC,
-    highScore
+    highScore,
 });
 
-export const getHighScore = score => dispatch => {
+export const getHighScore = () => dispatch => {
     const url = 'http://localhost:8081/fewest-guesses';
     return fetch(url).then(response => {
         if (!response.ok) {
@@ -51,17 +45,15 @@ export const getHighScore = score => dispatch => {
         .then(data => {
             dispatch(getHighScoreSuccess(data.highScore));
         })
-        .catch(error =>
-               console.log(error)
-              );
+        .catch(error => console.warn(error));
 };
 
-export const putHighScore = score => dispatch => {
+export const putHighScore = (score) => dispatch => {
     const url = 'http://localhost:8081/fewest-guesses';
     const params = {
         method: 'PUT',
         headers: {
-            'Content-type': 'application/json'
+            'Content-type': 'application/json',
         },
         body: JSON.stringify({highScore: score})
     };
@@ -76,7 +68,5 @@ export const putHighScore = score => dispatch => {
         .then(data => {
             dispatch(putHighScoreSync(data.highScore));
         })
-        .catch(error =>
-               console.log(error)
-              );
+        .catch(error => console.warn(error));
 };
