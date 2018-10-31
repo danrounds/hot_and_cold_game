@@ -1,7 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import * as actions from '../actions/index';
-import store from '../store';
 
 export class HighScore extends React.Component {
     componentWillReceiveProps() {
@@ -22,13 +21,13 @@ export class HighScore extends React.Component {
                 `Best score: ${this.props.highScore}` : '';
         return (
             <div className="best-score">
-              <p>{text}</p>
+              <p>{ text }</p>
             </div>
         );
     }
 }
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = (state) => ({
     // I don't use `gameOver` nor `turnN`, but without them,
     // componentWillReceiveProps won't update
     highScore: state.highScore,

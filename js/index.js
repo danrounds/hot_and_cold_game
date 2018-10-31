@@ -10,13 +10,13 @@ import TopBar from './components/top-bar';
 import HighScore from './components/high-score';
 
 document.addEventListener('DOMContentLoaded', () =>
-                          ReactDOM.render(
-                              <Provider store={store}>
-                                <div>
-                                  <TopBar />
-                                  <h1>HOT or COLD</h1>
-                                  <Game />
-                                  <HighScore />
-                                </div>
-                              </Provider>, document.getElementById('app')
-                          ));
+    ReactDOM.render(
+        <Provider store={ store }>
+          <div>
+            <TopBar />
+            <h1>HOT or COLD</h1>
+            <Game />
+            <HighScore />
+          </div>
+        </Provider>, document.getElementById('app')
+    ));
