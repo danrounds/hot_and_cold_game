@@ -2,13 +2,25 @@
 // For now, it needs to be run in a separate node instance.
 
 const express = require('express');
-const cors = require('cors');
 const jsonParser = require('body-parser').json();
 
 const app = express();
-const router = express.Router();
 
-app.use(jsonParser, cors());
+app.use(jsonParser);
+const options = {
+    // Options for serving our static files
+    dotfiles: 'ignore',
+    etag: true,
+    extensions: ['htm', 'html'],
+    index: 'index.html',
+    lastModified: true,
+    maxAge: '1d',
+    setHeaders: function (res) {
+        res.set('x-timestamp', Date.now());
+        res.header('Cache-Control', 'public, max-age=1d');
+    }
+};
+app.use('/', express.static('./build/', options));
 
 let highScore = null;
 
@@ -23,6 +35,6 @@ app.put('/fewest-guesses/', jsonParser, (req, res) => {
     res.status(201).json({highScore: highScore});
 });
 
-app.listen(process.env.PORT || 8081, () => {
-    console.log(`Your app is listening on port ${process.env.PORT || 8081}`);
+app.listen(process.env.PORT || 8080, () => {
+    console.log(`Your app is listening on port ${process.env.PORT || 8080}`);
 });
